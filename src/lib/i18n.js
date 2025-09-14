@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
   en: {
     title: "Tasks App",
     description: "Simple task management app",
@@ -23,23 +23,6 @@ const translations = {
   }
 };
 
-let currentLang = 'en';
-
-export const setLanguage = (lang) => {
-  currentLang = lang;
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('language', lang);
-  }
-};
-
-export const getLanguage = () => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('language') || 'en';
-  }
-  return currentLang;
-};
-
-export const t = (key) => {
-  const lang = getLanguage();
+export const t = (key, lang = 'en') => {
   return translations[lang]?.[key] || translations.en[key] || key;
 };
